@@ -1,7 +1,7 @@
 <project name="parserlib" default="build.all">
 
     <!-- version number -->
-    <property name="parserlib.version" value="0.2.5" />
+    <property name="parserlib.version" value="0.2.5+domino1-git" />
 
     <!-- the directories containing the source files -->
     <property name="src.dir" value="./src" />
