@@ -82,6 +82,7 @@ var ValidationTypes = {
 
 
     simple: {
+        __proto__: null,
 
         "<absolute-size>": function(part){
             return ValidationTypes.isLiteral(part, "xx-small | x-small | small | medium | large | x-large | xx-large");
@@ -218,6 +219,7 @@ var ValidationTypes = {
     },
 
     complex: {
+        __proto__: null,
 
         "<bg-position>": function(expression){
             var types   = this,
