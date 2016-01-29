@@ -1235,6 +1235,26 @@
             Assert.areEqual("Hello world!", result.parts[0].value);
         },
 
+        testStringValue3: function(){
+            var parser = new Parser();
+            var result = parser.parsePropertyValue("\"Chapter\\A \\aTwo\\\n\"");
+
+            Assert.isInstanceOf(parserlib.css.PropertyValue, result);
+            Assert.areEqual(1, result.parts.length);
+            Assert.areEqual("string", result.parts[0].type);
+            Assert.areEqual("Chapter\n\nTwo", result.parts[0].value);
+        },
+
+        testStringValue4: function(){
+            var parser = new Parser();
+            var result = parser.parsePropertyValue("'Chapter\\A \\aTwo\\\n'");
+
+            Assert.isInstanceOf(parserlib.css.PropertyValue, result);
+            Assert.areEqual(1, result.parts.length);
+            Assert.areEqual("string", result.parts[0].type);
+            Assert.areEqual("Chapter\n\nTwo", result.parts[0].value);
+        },
+
         testValueWithOperators: function(){
             var parser = new Parser();
             var result = parser.parsePropertyValue("10px / 1em");
