@@ -8,7 +8,7 @@ var ValidationTypes = {
             i, len, found = false;
 
         for (i=0,len=args.length; i < len && !found; i++){
-            if (text == args[i].toLowerCase()){
+            if (text === args[i].toLowerCase()){
                 found = true;
             }
         }
@@ -62,7 +62,7 @@ var ValidationTypes = {
         var part = expression.peek(),
             result = false;
 
-        if (type.charAt(0) != "<") {
+        if (type.charAt(0) !== "<") {
             result = this.isLiteral(part, type);
             if (result) {
                 expression.next();
@@ -93,7 +93,7 @@ var ValidationTypes = {
         },
 
         "<attr>": function(part){
-            return part.type == "function" && part.name == "attr";
+            return part.type === "function" && part.name === "attr";
         },
 
         "<bg-image>": function(part){
@@ -101,7 +101,7 @@ var ValidationTypes = {
         },
 
         "<gradient>": function(part) {
-            return part.type == "function" && /^(?:\-(?:ms|moz|o|webkit)\-)?(?:repeating\-)?(?:radial\-|linear\-)?gradient/i.test(part);
+            return part.type === "function" && /^(?:\-(?:ms|moz|o|webkit)\-)?(?:repeating\-)?(?:radial\-|linear\-)?gradient/i.test(part);
         },
 
         "<box>": function(part){
@@ -109,7 +109,7 @@ var ValidationTypes = {
         },
 
         "<content>": function(part){
-            return part.type == "function" && part.name == "content";
+            return part.type === "function" && part.name === "content";
         },
 
         "<relative-size>": function(part){
@@ -118,39 +118,39 @@ var ValidationTypes = {
 
         //any identifier
         "<ident>": function(part){
-            return part.type == "identifier";
+            return part.type === "identifier";
         },
 
         "<length>": function(part){
-            if (part.type == "function" && /^(?:\-(?:ms|moz|o|webkit)\-)?calc/i.test(part)){
+            if (part.type === "function" && /^(?:\-(?:ms|moz|o|webkit)\-)?calc/i.test(part)){
                 return true;
             }else{
-                return part.type == "length" || part.type == "number" || part.type == "integer" || part == "0";
+                return part.type === "length" || part.type === "number" || part.type === "integer" || part == "0";
             }
         },
 
         "<color>": function(part){
-            return part.type == "color" || part == "transparent" || part == "currentColor";
+            return part.type === "color" || part == "transparent" || part == "currentColor";
         },
 
         "<number>": function(part){
-            return part.type == "number" || this["<integer>"](part);
+            return part.type === "number" || this["<integer>"](part);
         },
 
         "<integer>": function(part){
-            return part.type == "integer";
+            return part.type === "integer";
         },
 
         "<line>": function(part){
-            return part.type == "integer";
+            return part.type === "integer";
         },
 
         "<angle>": function(part){
-            return part.type == "angle";
+            return part.type === "angle";
         },
 
         "<uri>": function(part){
-            return part.type == "uri";
+            return part.type === "uri";
         },
 
         "<image>": function(part){
@@ -158,7 +158,7 @@ var ValidationTypes = {
         },
 
         "<percentage>": function(part){
-            return part.type == "percentage" || part == "0";
+            return part.type === "percentage" || part == "0";
         },
 
         "<border-width>": function(part){
@@ -182,11 +182,11 @@ var ValidationTypes = {
         },
 
         "<shape>": function(part){
-            return part.type == "function" && (part.name == "rect" || part.name == "inset-rect");
+            return part.type === "function" && (part.name === "rect" || part.name === "inset-rect");
         },
 
         "<time>": function(part) {
-            return part.type == "time";
+            return part.type === "time";
         },
 
         "<flex-grow>": function(part){
@@ -212,9 +212,9 @@ var ValidationTypes = {
         "<flex-wrap>": function(part){
             return ValidationTypes.isLiteral(part, "nowrap | wrap | wrap-reverse");
         },
-        
+
         "<feature-tag-value>": function(part){
-            return (part.type == "function" && /^[A-Z0-9]{4}$/i.test(part));
+            return (part.type === "function" && /^[A-Z0-9]{4}$/i.test(part));
         }
     },
 
@@ -229,10 +229,10 @@ var ValidationTypes = {
                 yDir    = "top | bottom",
                 count = 0,
                 hasNext = function() {
-                    return expression.hasNext() && expression.peek() != ",";
+                    return expression.hasNext() && expression.peek().text !== ",";
                 };
 
-            while (expression.peek(count) && expression.peek(count) != ",") {
+            while (expression.peek(count) && expression.peek(count).text !== ",") {
                 count++;
             }
 
