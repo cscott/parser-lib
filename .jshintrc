@@ -5,6 +5,14 @@
   "evil":       true,
   "loopfunc":   true,
   "undef":      true,
+  "node":       false,
   "rhino":      false,
-  "proto":      true
+  "proto":      true,
+  "bitwise":    true,
+  "eqeqeq":     true,
+  "freeze":     true,
+  "noarg":      true,
+  "nonew":      true,
+  "unused":     "vars",
+  "strict":     "implied"
 }
