@@ -1,6 +1,7 @@
-/*global Tokens, TokenStream, SyntaxError, Properties, Validation, ValidationError, SyntaxUnit,
-    PropertyValue, PropertyValuePart, SelectorPart, SelectorSubPart, Selector,
-    PropertyName, Combinator, MediaFeature, MediaQuery, EventTarget */
+/*global Tokens, TokenStream, SyntaxError, Validation, SyntaxUnit */
+/*global PropertyValue, PropertyValuePart, SelectorPart, SelectorSubPart */
+/*global Selector, PropertyName, Combinator, MediaFeature, MediaQuery */
+/*global EventTarget */
 
 /**
  * A CSS3 parser.
@@ -75,7 +76,6 @@ Parser.prototype = function(){
                  */
 
                 var tokenStream = this._tokenStream,
-                    charset     = null,
                     count,
                     token,
                     tt;
@@ -251,7 +251,6 @@ Parser.prototype = function(){
                  */
 
                 var tokenStream = this._tokenStream,
-                    tt,
                     uri,
                     importToken,
                     mediaList   = [];
@@ -769,7 +768,6 @@ Parser.prototype = function(){
 
                 var tokenStream = this._tokenStream,
                     token,
-                    tt,
                     functions = [],
                     prefix = "";
 
@@ -1162,7 +1160,6 @@ Parser.prototype = function(){
                     i           = 0,
                     len         = components.length,
                     component   = null,
-                    found       = false,
                     line,
                     col;
 
@@ -1536,7 +1533,6 @@ Parser.prototype = function(){
                     arg         = null,
                     i           = 0,
                     len         = args.length,
-                    elementName,
                     line,
                     col,
                     part;
@@ -1578,7 +1574,6 @@ Parser.prototype = function(){
                     property    = null,
                     expr        = null,
                     prio        = null,
-                    error       = null,
                     invalid     = null,
                     propertyName= "";
 
@@ -1652,8 +1647,7 @@ Parser.prototype = function(){
                  *   ;
                  */
 
-                var tokenStream = this._tokenStream,
-                    values      = [],
+                var values      = [],
 					//valueParts	= [],
                     value       = null,
                     operator    = null;
@@ -1868,7 +1862,6 @@ Parser.prototype = function(){
 
                 var tokenStream = this._tokenStream,
                     functionText = null,
-                    expr        = null,
                     lt;
 
                 //IE function can begin like a regular function, too
@@ -2007,8 +2000,7 @@ Parser.prototype = function(){
                  *   | STRING
                  *   ;
                  */
-                var tokenStream = this._tokenStream,
-                    token;
+                var tokenStream = this._tokenStream;
 
                 tokenStream.mustMatch([Tokens.IDENT, Tokens.STRING]);
                 return SyntaxUnit.fromToken(tokenStream.token());
@@ -2022,9 +2014,7 @@ Parser.prototype = function(){
                  *     '{' S* declaration [ ';' S* declaration ]* '}' S*
                  *   ;
                  */
-                var tokenStream = this._tokenStream,
-                    token,
-                    keyList = this._key_list();
+                var keyList = this._key_list();
 
                 this.fire({
                     type:   "startkeyframerule",
@@ -2052,8 +2042,6 @@ Parser.prototype = function(){
                  *   ;
                  */
                 var tokenStream = this._tokenStream,
-                    token,
-                    key,
                     keyList = [];
 
                 //must be least one key
